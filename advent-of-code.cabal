@@ -33,6 +33,8 @@ library
       Year2020.Day3.Puzzle2
       Year2021.Day1.Puzzle1
       Year2021.Day1.Puzzle2
+      Year2021.Day2.Puzzle1
+      Year2021.Day2.Puzzle2
   other-modules:
       Paths_advent_of_code
   hs-source-dirs:
