@@ -35,6 +35,5 @@ check s =
       n                     = length [ b | b <- pswd , a == b ]
   in min <= n && n <= max
 
-solution :: IO ()
-solution =
-  length . (filter check) . lines <$> readFile "./input.txt" >>= print
+solution :: [String] -> IO ()
+solution = print . length . (filter check)

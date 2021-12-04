@@ -1,6 +1,6 @@
 module Main where
 
-import Year2020.Day2.Puzzle2
+import Year2020.Day2.Puzzle1 (solution)
 
 main :: IO ()
-main = solution
+main = lines <$> readFile "./input.txt" >>= solution

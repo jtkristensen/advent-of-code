@@ -4,6 +4,5 @@ solve :: [Int] -> Int
 solve ns =
   head $ [ a * b | a <- ns , b <- ns , a + b == 2020 ]
 
-solution :: IO ()
-solution =
-  solve . (map read) . lines <$> readFile "./input.txt" >>= print
+solution :: [String] -> IO ()
+solution = print . solve . (map read)

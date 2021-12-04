@@ -13,8 +13,7 @@ path :: Slope -> [String] -> String
 path (dx, dy) = zipWith (\i -> (!!(i)) . cycle) [0,dx..] . (every dy)
 
 trees :: Slope -> [String] -> Int
-trees sl map = length [ t | t <- path sl map , t == '#' ]
+trees sl = length . filter (=='#') . path sl
 
-solution :: IO ()
-solution =
-  trees (3, 1) . lines <$> readFile "./input.txt" >>= print
+solution :: [String] -> IO ()
+solution = print . trees (3, 1)
