@@ -1,16 +1,6 @@
 module Year2021.Day2.Puzzle1 where
 
-import Text.Parsec
-import Text.Parsec.String (Parser)
-
-lexeme :: Parser a -> Parser a
-lexeme p = p >>= \a -> many space >> return a
-
-number :: Parser Int
-number = lexeme $ read <$> many1 digit
-
-symbol :: String -> Parser ()
-symbol s = lexeme $ string s >> return ()
+import AdventLib.Parsing
 
 data Command  = Forward Int | Down Int | Up Int
 type Position = (Int, Int)
@@ -28,5 +18,5 @@ run (Up      n) (x, y) = (x, y - n)
 solution :: [String] -> IO ()
 solution = print .
            (uncurry (*) <$>) .
-           foldl (\st cmd -> run <$> parse command "" cmd <*> st)
+           foldl (\t s -> run <$> command `from` s <*> t)
            (return (0, 0))
