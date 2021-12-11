@@ -7,7 +7,7 @@ type Board = [[(Bool, Int)]]
 type Game  = ([Int], [Board])
 
 winner :: Board -> Bool
-winner board = any (all (id . fst)) (board ++ transpose board)
+winner board = any (all fst) (board ++ transpose board)
 
 score :: Board -> Int
 score = sum . map snd . filter (not . fst) . concat
