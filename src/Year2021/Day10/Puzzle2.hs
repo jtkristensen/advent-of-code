@@ -17,7 +17,7 @@ penalty '<' = 4
 
 score :: Status -> Int
 score (Incomplete stack) = foldl (\s c -> penalty c + 5 * s) 0 stack
-score _ = 0
+score _                  = 0
 
 middle :: Ord a => [a] -> a
 middle as = (sort as) !! (length as `div` 2)
