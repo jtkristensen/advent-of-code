@@ -9,19 +9,18 @@ corrupted :: Status -> Bool
 corrupted (Corrupted _) = True
 corrupted _             = False
 
-autocomplete_penalty :: Char -> Int
-autocomplete_penalty '(' = 1
-autocomplete_penalty '[' = 2
-autocomplete_penalty '{' = 3
-autocomplete_penalty '<' = 4
+penalty :: Char -> Int
+penalty '(' = 1
+penalty '[' = 2
+penalty '{' = 3
+penalty '<' = 4
 
-autocomplete_score :: Status -> Int
-autocomplete_score (Incomplete stack) =
-  foldl (\s c -> autocomplete_penalty c + 5 * s) 0 stack
-autocomplete_score _ = 0
+score :: Status -> Int
+score (Incomplete stack) = foldl (\s c -> penalty c + 5 * s) 0 stack
+score _ = 0
 
 middle :: Ord a => [a] -> a
 middle as = (sort as) !! (length as `div` 2)
 
 solution :: String -> IO ()
-solution = print . middle . filter (/=0) . map (autocomplete_score . status) . lines
+solution = print . middle . filter (/=0) . map (score . status) . lines
