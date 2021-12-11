@@ -6,6 +6,7 @@ module
   , number
   , symbol
   , from
+  , gridOf
   )
 where
 
@@ -23,3 +24,7 @@ symbol s = lexeme $ string s >> return ()
 
 from :: Parser a -> String -> Either ParseError a
 from p s = parse p "" s
+
+gridOf :: Parser a -> Int -> Int -> Parser [[a]]
+gridOf p n m =
+    mapM (const $ mapM (const p) [1..n]) [1..m]
