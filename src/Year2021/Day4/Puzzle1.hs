@@ -16,8 +16,7 @@ brick :: Int -> Board -> Board
 brick n = map $ map $ \(b, m) -> (b || m == n, m)
 
 board :: Int -> Int -> Parser Board
-board n m =
-  mapM (const $ mapM (const $ (,) False <$> number) [1..n]) [1..m]
+board = gridOf $ (,) False <$> number
 
 game :: Int -> Int -> Parser Game
 game n m =
