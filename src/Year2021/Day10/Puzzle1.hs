@@ -13,10 +13,10 @@ status = status' []
   where
     status' [           ] [           ]      = OK
     status' stack@(_ : _) [           ]      = Incomplete stack
-    status' stack (c : rest) | isOpen c      = status' (c : stack) rest
-    status' [           ] (c : _      )      = Corrupted c
+    status' stack    (i:nput) | isOpen i     = status' (i : stack) nput
+    status' [   ]    (i: _  )                = Corrupted i
     status' (s:tack) (i:nput) | match (s, i) = status' tack nput
-    status' _          input                 = Corrupted $ head input
+    status' _        (i:_   )                = Corrupted i
 
 syntax_error_score :: Status -> Int
 syntax_error_score (Corrupted ')') =     3
