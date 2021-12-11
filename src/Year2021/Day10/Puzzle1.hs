@@ -11,10 +11,10 @@ isOpen = (`elem` ['(', '[', '{', '<'])
 status :: String -> Status
 status = status' []
   where
-    status' [           ] [           ]      = OK
-    status' stack@(_ : _) [           ]      = Incomplete stack
+    status' [      ] [      ]                = OK
+    status' (s:tack) [      ]                = Incomplete stack
     status' stack    (i:nput) | isOpen i     = status' (i : stack) nput
-    status' [   ]    (i: _  )                = Corrupted i
+    status' [      ] (i:_   )                = Corrupted i
     status' (s:tack) (i:nput) | match (s, i) = status' tack nput
     status' _        (i:_   )                = Corrupted i
 
