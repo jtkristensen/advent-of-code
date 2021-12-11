@@ -12,9 +12,6 @@ type SquidGrid = Grid Field
 grid :: Parser SquidGrid
 grid = gridOf ((,) 0 . fmap (read) <$> return . return <$> lexeme digit) 10 10
 
-neighborhood :: Point -> [Point]
-neighborhood = bounded_neighborhood 10 10
-
 charge :: Field -> Field
 charge = second (fmap (+1))
 
@@ -29,14 +26,14 @@ uncharge   (n, _     ) = (n + 1, Just 0)
 step :: SquidGrid -> SquidGrid
 step = phase3 . phase2 . phase1
   where
-    phase1   = updateAll charge
+    phase1   = update_all charge
     phase2 g =
       case filter (overCharged . fst) $ [\p h -> (get p h, p)] <*> ps <*> [g] of
-        ((_, p) : _) -> phase2 $ updates charge (neighborhood p)
+        ((_, p) : _) -> phase2 $ updates charge (neighborhood g p)
                                $ update (second $ const Nothing) p g
         _            -> g
     ps     = all_points 10 10
-    phase3 = updateAll uncharge
+    phase3 = update_all uncharge
 
 flashes :: SquidGrid -> Int
 flashes = sum . map fst . concat
