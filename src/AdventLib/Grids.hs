@@ -17,17 +17,29 @@ update f p g = put (f (get p g)) p g
 updates :: (a -> a) -> [Point] -> (Grid a -> Grid a)
 updates f = foldr (\p g -> g . update f p) id
 
-updateAll :: (a -> a) -> (Grid a -> Grid a)
-updateAll f g = updates f (all_points (length g) (length $ head g)) g
+update_all :: (a -> a) -> (Grid a -> Grid a)
+update_all f g = updates f (all_points (length g) (length $ head g)) g
 
-bounded_neighborhood :: Int -> Int -> Point -> [Point]
-bounded_neighborhood i_bound j_bound (i, j) =
+x_bound :: Grid a -> Int
+x_bound = length
+
+y_bound :: Grid a -> Int
+y_bound = length . head
+
+neighborhood :: Grid a -> Point -> [Point]
+neighborhood g (i, j) =
   [ (n, m)
   | n <- [i - 1, i, i + 1]
   , m <- [j - 1, j, j + 1]
-  , not $ n < 0, n < i_bound
-  , not $ m < 0, m < j_bound
+  , not $ n < 0, n < x_bound g
+  , not $ m < 0, m < y_bound g
   ]
+
+adjecent :: Grid a -> Point -> [Point]
+adjecent g p@(i, j) =
+  filter (/=p) $
+  filter (\(k, l) -> i == k || j == l) $
+  neighborhood g p
 
 all_points :: Int -> Int -> [Point]
 all_points n m =
@@ -35,3 +47,5 @@ all_points n m =
      j <- [0..m-1]
      return (i, j)
 
+points_of :: Grid a -> [Point]
+points_of g = all_points (x_bound g) (y_bound g)

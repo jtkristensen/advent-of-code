@@ -25,6 +25,7 @@ source-repository head
 
 library
   exposed-modules:
+      AdventLib.Grids
       AdventLib.Parsing
       Year2020.Day1.Puzzle1
       Year2020.Day1.Puzzle2
@@ -34,12 +35,20 @@ library
       Year2020.Day3.Puzzle2
       Year2021.Day1.Puzzle1
       Year2021.Day1.Puzzle2
+      Year2021.Day10.Puzzle1
+      Year2021.Day10.Puzzle2
+      Year2021.Day11.Puzzle1
+      Year2021.Day11.Puzzle2
+      Year2021.Day12.Puzzle1
       Year2021.Day2.Puzzle1
       Year2021.Day2.Puzzle2
       Year2021.Day3.Puzzle1
       Year2021.Day3.Puzzle2
       Year2021.Day4.Puzzle1
       Year2021.Day4.Puzzle2
+      Year2021.Day5.Puzzle1
+      Year2021.Day9.Puzzle1
+      Year2021.Day9.Puzzle2
   other-modules:
       Paths_advent_of_code
   hs-source-dirs:
