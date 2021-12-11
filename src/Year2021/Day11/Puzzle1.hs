@@ -29,14 +29,14 @@ uncharge   (n, _     ) = (n + 1, Just 0)
 step :: SquidGrid -> SquidGrid
 step = phase3 . phase2 . phase1
   where
-    phase1   = updateAll charge (all_points 10 10)
+    phase1   = updateAll charge
     phase2 g =
-      let ps = [\p h -> (get p h, p)] <*> all_points 10 10 <*> [g]
-      in  case filter (overCharged . fst) ps of
-            ((_, p) : _) -> phase2 $ updateAll charge (neighborhood p)
-                                   $ update (second $ const Nothing) p g
-            _            -> g
-    phase3 = updateAll uncharge (all_points 10 10)
+      case filter (overCharged . fst) $ [\p h -> (get p h, p)] <*> ps <*> [g] of
+        ((_, p) : _) -> phase2 $ updates charge (neighborhood p)
+                               $ update (second $ const Nothing) p g
+        _            -> g
+    ps     = all_points 10 10
+    phase3 = updateAll uncharge
 
 flashes :: SquidGrid -> Int
 flashes = sum . map fst . concat
