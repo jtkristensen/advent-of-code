@@ -25,5 +25,5 @@ check s =
       n                     = length [ b | b <- pswd , a == b ]
   in min <= n && n <= max
 
-solution :: [String] -> IO ()
-solution = print . length . (filter check)
+solution :: String -> IO ()
+solution = print . length . (filter check) . lines

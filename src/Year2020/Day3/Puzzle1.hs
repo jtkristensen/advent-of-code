@@ -15,5 +15,5 @@ path (dx, dy) = zipWith (\i -> (!!(i)) . cycle) [0,dx..] . (every dy)
 trees :: Slope -> [String] -> Int
 trees sl = length . filter (=='#') . path sl
 
-solution :: [String] -> IO ()
-solution = print . trees (3, 1)
+solution :: String -> IO ()
+solution = print . trees (3, 1) . lines

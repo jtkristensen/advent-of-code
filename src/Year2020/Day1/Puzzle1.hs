@@ -4,5 +4,5 @@ solve :: [Int] -> Int
 solve ns =
   head $ [ a * b | a <- ns , b <- ns , a + b == 2020 ]
 
-solution :: [String] -> IO ()
-solution = print . solve . (map read)
+solution :: String -> IO ()
+solution = print . solve . (map read) . lines

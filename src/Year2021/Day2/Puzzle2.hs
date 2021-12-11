@@ -11,8 +11,9 @@ run (Forward n) s = s { x   = x s + n
 run (Down    n) s = s { aim = aim s + n }
 run (Up      n) s = s { aim = aim s - n }
 
-solution :: [String] -> IO ()
+solution :: String -> IO ()
 solution = print .
            ((\s -> x s * y s) <$>) .
            foldl (\t s -> run <$> command `from` s <*> t)
-           (return (State 0 0 0))
+           (return (State 0 0 0)) .
+           lines

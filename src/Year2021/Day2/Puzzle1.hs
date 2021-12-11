@@ -15,8 +15,9 @@ run (Forward n) (x, y) = (x + n, y)
 run (Down    n) (x, y) = (x, y + n)
 run (Up      n) (x, y) = (x, y - n)
 
-solution :: [String] -> IO ()
+solution :: String -> IO ()
 solution = print .
            (uncurry (*) <$>) .
            foldl (\t s -> run <$> command `from` s <*> t)
-           (return (0, 0))
+           (return (0, 0)) .
+           lines

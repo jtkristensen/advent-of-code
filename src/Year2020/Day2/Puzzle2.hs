@@ -9,5 +9,5 @@ check s =
       (i, j) = (i' - 1, j' - 1)
   in (pswd !! i == a || pswd !! j == a) && pswd !! i /= pswd !! j
 
-solution :: [String] -> IO ()
-solution = print . length . (filter check)
+solution :: String -> IO ()
+solution = print . length . (filter check) . lines

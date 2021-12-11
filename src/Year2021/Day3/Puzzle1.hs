@@ -15,7 +15,7 @@ gamma, epsilon :: [Binary] -> Binary
 gamma   = map most_common
 epsilon = map not . gamma
 
-solution :: [String] -> IO ()
+solution :: String -> IO ()
 solution input =
-  let diagnostic = map (=='1') <$> transpose input
+  let diagnostic = map (=='1') <$> transpose (lines input)
   in  print $ to_decimal (gamma diagnostic) * to_decimal (epsilon diagnostic)
