@@ -7,7 +7,7 @@ import Language.Haskell.TH
 import AdventLib.Parsing
 import System.Directory
 
-import Year2021.Day5.Puzzle2
+import Year2021.Day12.Puzzle1
 
 main :: IO ()
-main = readFile "./input.txt" >>= solution
+main = readFile "./example.txt" >>= solution
