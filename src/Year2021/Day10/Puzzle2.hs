@@ -5,10 +5,6 @@ import Data.List
 import Year2021.Day10.Puzzle1
   (Status(..), status)
 
-corrupted :: Status -> Bool
-corrupted (Corrupted _) = True
-corrupted _             = False
-
 penalty :: Char -> Int
 penalty '(' = 1
 penalty '[' = 2
