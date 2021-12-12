@@ -7,6 +7,7 @@ module
   , symbol
   , from
   , gridOf
+  , listOf
   )
 where
 
@@ -28,3 +29,6 @@ from p s = parse p "" s
 gridOf :: Parser a -> Int -> Int -> Parser [[a]]
 gridOf p n m =
     mapM (const $ mapM (const p) [1..n]) [1..m]
+
+listOf :: Parser a -> Parser [a]
+listOf p = (:) <$> p <*> (many $ symbol "," >> p)
