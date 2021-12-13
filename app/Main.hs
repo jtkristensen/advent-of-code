@@ -2,12 +2,8 @@
 
 module Main where
 
-import Control.Monad
-import Language.Haskell.TH
-import AdventLib.Parsing
-import System.Directory
-
-import Year2021.Day12.Puzzle1
+import Year2021.Day12.Puzzle2
 
 main :: IO ()
-main = readFile "./example.txt" >>= solution
+main = readFile "./input.txt" >>= solution
+
