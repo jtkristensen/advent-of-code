@@ -9,35 +9,22 @@ data Axis        = X | Y
 data Instruction = Fold_Along Axis Int
 
 point :: Parser Point
-point =
-  do x <- number
-     symbol ","
-     y <- number
-     return (x, y)
+point = (,) <$> number <*> (symbol "," >> number)
 
 axis :: Parser Axis
-axis =
-  choice [ symbol "x" >> return X
-         , symbol "y" >> return Y
-         ]
+axis = choice $ [\(s, t) -> symbol s >> return t] <*> [("x", X), ("y", Y)]
 
 instruction :: Parser Instruction
 instruction =
   do symbol "fold"
      symbol "along"
-     x_or_y <- axis
-     symbol "="
-     Fold_Along x_or_y <$> number
+     Fold_Along <$> axis `before` symbol "=" <*> number
 
 transparant :: Parser ([Point], [Instruction])
-transparant =
-  do points       <- many point
-     instructions <- many instruction
-     eof
-     return (points, instructions)
+transparant = (,) <$> many point <*> many instruction `before` eof
 
 transpose :: [Point] -> [Point]
-transpose = map (\(x , y) -> (y , x))
+transpose = map $ uncurry $ flip (,)
 
 fold :: Axis -> Int -> [Point] -> [Point]
 fold Y n = transpose . fold X n . transpose
