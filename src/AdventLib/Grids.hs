@@ -6,6 +6,10 @@ type Point  = (Int, Int)
 fresh :: Int -> Int -> a -> Grid a
 fresh n m a = take m $ (repeat (take n (repeat a)))
 
+contains :: [Point] -> (Int, Int)
+contains points =
+  add (1,1) (maximum $ map fst points, maximum $ map snd points)
+
 get :: Point -> Grid a -> a
 get (i, 0) (row :  _) = row !! i
 get (i, j) (_ : rest) = get (i, j - 1) rest
@@ -52,3 +56,6 @@ all_points n m =
 
 points_of :: Grid a -> [Point]
 points_of g = all_points (x_bound g) (y_bound g)
+
+add :: Point -> Point -> Point
+add (a, b) (c, d) = (a + c, b + d)
