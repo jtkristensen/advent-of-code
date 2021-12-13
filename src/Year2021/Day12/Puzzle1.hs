@@ -40,7 +40,7 @@ isLarge :: Cave -> Bool
 isLarge (Large _) = True
 isLarge _         = False
 
-paths :: Cave -> (Int, [Cave]) -> Graph -> Int
+paths :: Cave -> (Int, Path) -> Graph -> Int
 paths End _ _ = 1
 paths v  (joker, path) graph@(vertices, edges) =
   sum [ paths u (joker', v : path) graph
