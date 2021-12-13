@@ -1,10 +1,8 @@
 # General instructions:
 
-Stand in a directory containing the relevant input file. Then type:
-```bash
-stack run
+Stand in this directory, and type
 ```
-
-# TODO:
-
-Generalize `app/Main.hs` to take as argument the name of the solution to print.
+make Year<y>.Day<d>.Puzzle<n> input=<input.txt>
+```
+To run the solution for the specified Year, Day and Puzzle,
+on the specified input file.
