@@ -10,7 +10,7 @@ type Paper = Grid Char
 paper :: [Point] -> Paper
 paper dots = updates (const '#') dots $ uncurry fresh (contains dots) '.'
 
-onPaper :: Either error [Point] -> IO ()
+onPaper :: Traversable t => t [Point] -> IO ()
 onPaper = void . mapM (mapM putStrLn) . fmap paper
 
 solution :: String -> IO ()
