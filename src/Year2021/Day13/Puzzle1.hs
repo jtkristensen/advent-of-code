@@ -18,7 +18,9 @@ instruction :: Parser Instruction
 instruction =
   do symbol "fold"
      symbol "along"
-     Fold_Along <$> axis `before` symbol "=" <*> number
+     x_or_y <- axis
+     symbol "="
+     Fold_Along x_or_y <$> number
 
 transparant :: Parser ([Point], [Instruction])
 transparant = (,) <$> many point <*> many instruction `before` eof
