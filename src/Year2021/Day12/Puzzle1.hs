@@ -4,7 +4,8 @@ import AdventLib.Parsing
 import Data.Char
 import Data.List (sort, nub, (\\))
 
-data Cave  = Start | End | Large String | Small String
+type Name  = String
+data Cave  = Start | End | Large Name | Small Name
   deriving Eq
 
 type Edge  = (Cave, Cave)
