@@ -1,8 +1,8 @@
 module Year2021.Day12.Puzzle1 where
 
 import AdventLib.Parsing
-import Data.Char
-import Data.List (sort, nub, (\\))
+import Data.Char ( isUpper )
+import Data.List (nub, (\\))
 
 type Name  = String
 data Cave  = Start | End | Large Name | Small Name
