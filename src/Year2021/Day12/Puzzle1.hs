@@ -5,13 +5,7 @@ import Data.Char
 import Data.List (sort, nub, (\\))
 
 data Cave  = Start | End | Large String | Small String
-  deriving (Eq, Ord)
-
-instance Show Cave where
-  show Start     = "start"
-  show End       = "end"
-  show (Large s) = s
-  show (Small s) = s
+  deriving Eq
 
 type Edge  = (Cave, Cave)
 type Graph = ([Cave], [Edge])
@@ -38,7 +32,7 @@ graph :: Parser Graph
 graph =
   do es <- many edge
      eof
-     return (sort $ (nub $ map fst es ++ map snd es) \\ [Start]
+     return ((nub $ map fst es ++ map snd es) \\ [Start]
             , nub $ es ++ map (\(v, u) -> (u, v)) es)
 
 isLarge :: Cave -> Bool
