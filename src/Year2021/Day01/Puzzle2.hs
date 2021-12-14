@@ -1,6 +1,6 @@
-module Year2021.Day1.Puzzle2 where
+module Year2021.Day01.Puzzle2 where
 
-import Year2021.Day1.Puzzle1 (count)
+import Year2021.Day01.Puzzle1 (count)
 
 solution :: String -> IO ()
 solution input = print $ count $ zipWith3 (\a b c -> a + b + c) l0 l1 l2

@@ -1,8 +1,9 @@
-module Year2021.Day3.Puzzle2 where
+module Year2021.Day03.Puzzle2 where
 
 import Data.List
   ( transpose )
-import Year2021.Day3.Puzzle1
+
+import Year2021.Day03.Puzzle1
   ( Bit , Binary , to_decimal )
 
 solve :: Bit -> [Binary] -> Binary

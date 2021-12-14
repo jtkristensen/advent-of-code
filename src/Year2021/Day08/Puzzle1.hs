@@ -1,4 +1,4 @@
-module Year2021.Day8.Puzzle1 where
+module Year2021.Day08.Puzzle1 where
 
 import AdventLib.Parsing
 import Data.List (nub, sort)

@@ -1,9 +1,9 @@
-module Year2021.Day9.Puzzle2 where
+module Year2021.Day09.Puzzle2 where
 
 import AdventLib.Parsing
 import AdventLib.Grids
 
-import Year2021.Day9.Puzzle1
+import Year2021.Day09.Puzzle1
   (HeatMap, heat_map, low)
 
 import Data.List (sort, nub)

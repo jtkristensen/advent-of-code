@@ -1,4 +1,4 @@
-module Year2021.Day2.Puzzle1 where
+module Year2021.Day02.Puzzle1 where
 
 import AdventLib.Parsing
 

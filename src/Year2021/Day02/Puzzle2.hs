@@ -1,7 +1,10 @@
-module Year2021.Day2.Puzzle2 where
+module Year2021.Day02.Puzzle2 where
 
-import AdventLib.Parsing hiding (State)
-import Year2021.Day2.Puzzle1 (command, Command(..))
+import AdventLib.Parsing
+  hiding ( State )
+
+import Year2021.Day02.Puzzle1
+  ( command, Command(..) )
 
 data State = State { x, y, aim :: Int } deriving (Show)
 

@@ -1,8 +1,8 @@
-module Year2021.Day7.Puzzle2 where
+module Year2021.Day07.Puzzle2 where
 
 import AdventLib.Parsing
 
-import Year2021.Day7.Puzzle1
+import Year2021.Day07.Puzzle1
   ( positions , range , costs )
 
 cheapest_move :: [Int] -> Int

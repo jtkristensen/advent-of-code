@@ -1,4 +1,4 @@
-module Year2021.Day3.Puzzle1 where
+module Year2021.Day03.Puzzle1 where
 
 import Data.List (transpose)
 

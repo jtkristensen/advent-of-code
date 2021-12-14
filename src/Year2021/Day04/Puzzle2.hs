@@ -1,7 +1,7 @@
-module Year2021.Day4.Puzzle2 where
+module Year2021.Day04.Puzzle2 where
 
 import AdventLib.Parsing
-import Year2021.Day4.Puzzle1
+import Year2021.Day04.Puzzle1
   (Game, winner, score, brick, game, play)
 
 losing :: Game -> Game

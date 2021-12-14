@@ -1,8 +1,9 @@
-module Year2021.Day6.Puzzle2 where
+module Year2021.Day06.Puzzle2 where
 
 import AdventLib.Parsing
   ( from )
-import Year2021.Day6.Puzzle1
+
+import Year2021.Day06.Puzzle1
   (int_list, day)
 
 solution :: String -> IO ()

@@ -1,4 +1,4 @@
-module Year2021.Day1.Puzzle1 where
+module Year2021.Day01.Puzzle1 where
 
 count :: [Int] -> Int
 count xs = length $ filter id $ zipWith (<) xs (tail xs)

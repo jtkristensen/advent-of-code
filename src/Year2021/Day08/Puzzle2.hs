@@ -1,9 +1,9 @@
-module Year2021.Day8.Puzzle2 where
+module Year2021.Day08.Puzzle2 where
 
 import AdventLib.Parsing
 import Data.List (sort, (\\))
 
-import Year2021.Day8.Puzzle1
+import Year2021.Day08.Puzzle1
   (Entry, alphabet, emap, entries )
 
 type Configuration = Char -> Char

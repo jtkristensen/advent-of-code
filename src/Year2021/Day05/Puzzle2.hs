@@ -1,4 +1,4 @@
-module Year2021.Day5.Puzzle2 where
+module Year2021.Day05.Puzzle2 where
 
 import Data.List
   ( (\\) , nub )
@@ -9,7 +9,7 @@ import AdventLib.Parsing
 import Control.Arrow
   ( first, second )
 
-import Year2021.Day5.Puzzle1
+import Year2021.Day05.Puzzle1
   ( Point, Segment, segments )
 
 closer :: Int -> Int -> Int
