@@ -4,7 +4,7 @@ import AdventLib.Parsing
 import Data.List (sort, (\\))
 
 import Year2021.Day08.Puzzle1
-  (Entry, alphabet, emap, entries )
+  (Entry, alphabet, lift , entries )
 
 type Configuration = Char -> Char
 
@@ -23,13 +23,14 @@ configurations =
        ('d', d), ('e', e), ('f', f), ('g', g)]]
 
 configure :: Configuration -> Entry String -> Entry String
-configure f = emap (sort . map f)
+configure f = lift (sort . map f)
 
 meaningful :: Entry String -> Bool
 meaningful (ins, outs) = all (`elem` (map fst alphabet)) $ ins ++ outs
 
 solve :: Entry String -> Entry String
-solve e = head $ filter meaningful $ [configure] <*> configurations <*> [e]
+solve e = head $ filter meaningful $
+  [lift . (\f -> sort . map f)] <*> configurations <*> [e]
 
 read_digit :: String -> Char
 read_digit s = head . head $ [show i | (s', i) <- alphabet, s == s']
