@@ -18,7 +18,7 @@ instruction =
      fold <$> letter <*> (symbol "=" >> number)
 
 transparant :: Parser ([Point], [Instruction])
-transparant = (,) <$> many point <*> many instruction `before` eof
+transparant = (,) <$> many point <*> many instruction <* eof
 
 transpose :: [Point] -> [Point]
 transpose = map $ uncurry $ flip (,)

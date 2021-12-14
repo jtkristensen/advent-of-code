@@ -8,7 +8,6 @@ module
   , from
   , gridOf
   , listOf
-  , before
   )
 where
 
@@ -16,7 +15,7 @@ import Text.Parsec
 import Text.Parsec.String (Parser)
 
 lexeme :: Parser a -> Parser a
-lexeme p = p `before` many space
+lexeme p = p <* many space
 
 number :: Parser Int
 number = lexeme $ read <$> many1 digit
@@ -33,6 +32,3 @@ gridOf p n m =
 
 listOf :: Parser a -> Parser [a]
 listOf p = (:) <$> p <*> (many $ symbol "," >> p)
-
-before :: Parser a -> Parser b -> Parser a
-before p q = p >>= \a -> q >> return a

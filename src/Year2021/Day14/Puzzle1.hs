@@ -25,7 +25,7 @@ rule =
      return $ ((a, b), c)
 
 puzzle :: Parser Puzzle
-puzzle = (,) <$> polymer <*> many rule `before` eof
+puzzle = (,) <$> polymer <*> many rule <* eof
 
 collect :: (Ord a, Ord b, Num b) => [(a, b)] -> [(a, b)]
 collect = collect' . sort
