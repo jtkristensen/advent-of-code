@@ -2,8 +2,8 @@ module Year2021.Day14.Puzzle1 where
 
 import AdventLib.Parsing
 import AdventLib.Grids
-import Data.List     ( sort  )
-import Control.Arrow ( first )
+import Data.List     ( sort , groupBy )
+import Control.Arrow ( first          )
 
 type Pair      = (Char, Char)
 type Polymer   = [(Pair, Integer)]
@@ -17,26 +17,18 @@ polymer =
      return $ sequence `zip` (tail sequence) `zip` (repeat 1)
 
 rule :: Parser Rule
-rule =
-  do a <- lexeme letter
-     b <- lexeme letter
-     symbol "->"
-     c <- lexeme letter
-     return $ ((a, b), c)
+rule = (,) <$> (lexeme ((,) <$> letter <*> letter))
+           <*> (symbol "->" *> lexeme letter)
 
 puzzle :: Parser Puzzle
 puzzle = (,) <$> polymer <*> many rule <* eof
 
 collect :: (Ord a, Ord b, Num b) => [(a, b)] -> [(a, b)]
-collect = collect' . sort
-  where
-    collect' ((a, n) : (b, m) : rest) | a == b = collect' $ (a, n + m) : rest
-    collect' (pair : rest)                     = pair : collect' rest
-    collect' _                                 = []
+collect = map (\ps -> (fst $ head ps, sum $ map snd ps)) .
+          groupBy (\p q -> fst p == fst q) . sort
 
-partition :: Polymer -> [Rule] -> [Matching]
-partition polymer rules  =
-  [([r | r <- rules , fst r == fst p], p) | p <- polymer ]
+partition :: [Rule] -> Polymer -> [Matching]
+partition rs ps = [([r | r <- rs , fst r == fst p], p) | p <- ps ]
 
 resolve :: Matching -> Polymer
 resolve ([], p          ) = [p]
@@ -45,7 +37,7 @@ resolve (rs, ((a, c), n)) =
 
 steps :: Int -> Puzzle -> Puzzle
 steps n p = foldl
-  (\(q, r) _ -> (collect $ concat $ map resolve $ partition q r, r)) p [1..n]
+  (\(q, r) _ -> (collect $ concat $ resolve <$> partition r q, r)) p [1..n]
 
 solve :: Int -> Puzzle -> [(Char, Integer)]
 solve n p =
@@ -59,3 +51,4 @@ solution input =
   map snd .
   solve 10 <$>
   puzzle `from` input
+
