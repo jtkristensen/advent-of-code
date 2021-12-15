@@ -5,11 +5,11 @@ import AdventLib.Grids
 import Data.List     ( sort , groupBy )
 import Control.Arrow ( first          )
 
-type Pair      = (Char, Char)
-type Polymer   = [(Pair, Integer)]
-type Rule      = (Pair, Char)
-type Puzzle    = (Polymer, [Rule])
-type Matching  = ([Rule], (Pair, Integer))
+type Binding  = ((Char, Char), Integer)
+type Polymer  = [Binding]
+type Rule     = ((Char, Char), Char)
+type Puzzle   = (Polymer, [Rule])
+type Matching = ([Rule], Binding)
 
 polymer :: Parser Polymer
 polymer =
